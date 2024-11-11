@@ -219,13 +219,36 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
  */
 int q3(char *texto, char c, int isCaseSensitive)
 {
-    int qtdOcorrencias = -1;
+    int qtdOcorrencias = 0;
+    char copia[250];
+
+    for (int icont = 0; icont < strlen(texto); icont++)
+      copia[icont] = texto[icont];
+
+    if (isCaseSensitive == 1){
+      for (int icont = 0; icont < strlen(copia); icont++)
+        if (copia[icont] == c)
+          qtdOcorrencias++;
+
+    } else {
+      if (c >= 'A' && c <= 'Z')
+        c += 'a' - 'A';
+
+      for (int icont = 0; icont < strlen(copia); icont++)
+        if (copia[icont] >= 'A' && copia[icont] <= 'Z')
+          copia[icont] += 'a' - 'A';
+
+      for (int icont = 0; icont < strlen(copia); icont++)
+        if (copia[icont] == c)
+          qtdOcorrencias++;
+      
+    }
 
     return qtdOcorrencias;
 }
 
 /*
- Q4 = encontrar palavra em texto
+ Q4 = encontrar palavra em texto 
  @objetivo
     Pesquisar todas as ocorrências de uma palavra em um texto
  @entrada

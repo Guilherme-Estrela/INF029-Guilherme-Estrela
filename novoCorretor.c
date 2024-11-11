@@ -16,9 +16,11 @@ int main(){
     //pridntf("q1\n");
  //   testQ1(); // 10 testes
     //pridntf("q2\n");
-    testQ2(); // 35 testes
+  
+  
+  //   testQ2(); // 35 testes
     //prindtf("q3\n");
- //   testQ3(); // 13 testes
+    testQ3(); // 13 testes
     //prdintf("q4\n");
  //   testQ4(); // 22 testes
     //prdintf("q5\n");
@@ -53,7 +55,7 @@ void testQ1(){
     printf("%d\n",q1(str) == 1); 
 
 }
-*/
+
 void testQ2(){
     char datainicial[11], datafinal[11];
     int qtdDias, qtdMeses, qtdAnos;
@@ -185,29 +187,29 @@ void testQ2(){
     printf("%d\n",dma.qtdAnos == 0);
 
 }
-/*
+*/
 void testQ3(){
     char str[250];
     strcpy(str,"Renato Lima Novais");
-    printf("%d\n",q3(str, 'a', 0) == 3);
-    printf("%d\n",q3(str, 'b', 0) == 0);
-    printf("%d\n",q3(str, 'l', 1) == 0);
-    printf("%d\n",q3(str, 'l', 0) == 1);
-    printf("%d\n",q3(str, 'L', 0) == 1);
+    printf("%d",q3(str, 'a', 0) == 3); printf ("-> %d\n", q3(str, 'a', 0));
+    printf("%d",q3(str, 'b', 0) == 0); printf ("-> %d\n", q3(str, 'b', 0));
+    printf("%d",q3(str, 'l', 1) == 0); printf ("-> %d\n", q3(str, 'l', 1));
+    printf("%d",q3(str, 'l', 0) == 1); printf ("-> %d\n", q3(str, 'l', 0));
+    printf("%d",q3(str, 'L', 0) == 1); printf ("-> %d\n", q3(str, 'L', 0));
 
     strcpy(str,"Letícia, signifiCa fEliCIdADE");
-    printf("%d\n",q3(str, 'c', 0) == 3);
-    printf("%d\n",q3(str, 'C', 0) == 3);
-    printf("%d\n",q3(str, 'c', 1) == 1);
-    printf("%d\n",q3(str, 'C', 1) == 2);
-    printf("%d\n",q3(str, 'R', 0) == 0);
-    printf("%d\n",q3(str, 'e', 0) == 3);
-    printf("%d\n",q3(str, 'E', 1) == 2);
-    printf("%d\n",q3(str, 'S', 1) == 0);
+    printf("%d",q3(str, 'c', 0) == 3); printf ("-> %d\n", q3(str, 'c', 0));
+    printf("%d",q3(str, 'C', 0) == 3); printf ("-> %d\n", q3(str, 'C', 0));
+    printf("%d",q3(str, 'c', 1) == 1); printf ("-> %d\n", q3(str, 'c', 1));
+    printf("%d",q3(str, 'C', 1) == 2); printf ("-> %d\n", q3(str, 'C', 1));
+    printf("%d",q3(str, 'R', 0) == 0); printf ("-> %d\n", q3(str, 'R', 0));
+    printf("%d",q3(str, 'e', 0) == 3); printf ("-> %d\n", q3(str, 'e', 0));
+    printf("%d",q3(str, 'E', 1) == 2); printf ("-> %d\n", q3(str, 'E', 1));
+    printf("%d",q3(str, 'S', 1) == 0); printf ("-> %d\n", q3(str, 'S', 1));
 
     
 }
-
+/*
 void testQ4(){
     char strTexto[250];
     char strBusca[50];
@@ -261,7 +263,6 @@ void testQ4(){
     printf("%d\n",posicoes[7]==27);
 
 }
-
 
 void testQ5(){
     printf("%d\n",q5(345) == 543);
