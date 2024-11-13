@@ -264,7 +264,38 @@ int q3(char *texto, char c, int isCaseSensitive)
  */
 int q4(char *strTexto, char *strBusca, int posicoes[30])
 {
-    int qtdOcorrencias = -1;
+    char copia [250];
+    int qtdOcorrencias = 0;
+    int posicao = 0, inicio;
+
+
+    for (int icont = 0; icont < strlen(strTexto); icont++)
+      if (strTexto[icont] != -65)
+        copia[icont] = strTexto[icont];
+
+    for (int icont = 0; icont < strlen(copia); icont++){
+      int jcont = 0;
+
+      if (copia[icont] == strBusca[0]){
+        inicio = icont+1;
+
+        while (copia[icont] == strBusca[jcont] && jcont < strlen(strBusca)){
+          icont++;
+          jcont++;
+        }
+        
+        if (jcont == strlen(strBusca))
+        {
+          posicoes[posicao] = inicio;
+          posicao++;
+          posicoes[posicao] = icont;
+          posicao++;
+          qtdOcorrencias++;
+          icont--;
+        }
+        
+      }
+    }
 
     return qtdOcorrencias;
 }
@@ -281,6 +312,35 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
 
 int q5(int num)
 {
+    int algarismos[20];
+    int tam;
+    int copia = num;
+
+    int icont = 0;
+    for (icont = 0; copia < 1; icont++){
+      algarismos[icont] = copia % 10;
+      copia /= 10;
+    }
+
+    tam = icont;
+
+    for (icont; icont >= 0; icont--)
+    {
+      int jcont = 1;
+      int multiplicador = 1;
+
+      for (int kcont = 0; kcont < jcont; kcont++)
+        multiplicador *= 10;
+      
+      jcont++;
+      algarismos[icont] *= multiplicador;
+
+    }
+
+    num = 0;
+
+    for (icont = 0; icont < tam; icont++)
+      num += algarismos[icont];
 
     return num;
 }
