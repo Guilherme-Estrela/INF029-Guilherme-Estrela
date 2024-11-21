@@ -24,6 +24,7 @@
 #include <stdio.h>
 #include "GuilhermeEstrela20241160020.h" // Substitua pelo seu arquivo de header renomeado
 #include <stdlib.h>
+#include <string.h>
 
 DataQuebrada quebraData(char data[]);
 
@@ -312,35 +313,15 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
 
 int q5(int num)
 {
-    int algarismos[20];
-    int tam;
-    int copia = num;
+    int inverso = 0;
 
-    int icont = 0;
-    for (icont = 0; copia < 1; icont++){
-      algarismos[icont] = copia % 10;
-      copia /= 10;
+    while (num > 0){
+      inverso += num%10;
+      num /= 10;
+      inverso *= 10;
     }
 
-    tam = icont;
-
-    for (icont; icont >= 0; icont--)
-    {
-      int jcont = 1;
-      int multiplicador = 1;
-
-      for (int kcont = 0; kcont < jcont; kcont++)
-        multiplicador *= 10;
-      
-      jcont++;
-      algarismos[icont] *= multiplicador;
-
-    }
-
-    num = 0;
-
-    for (icont = 0; icont < tam; icont++)
-      num += algarismos[icont];
+    num = inverso/10;
 
     return num;
 }
@@ -356,8 +337,34 @@ int q5(int num)
  */
 
 int q6(int numerobase, int numerobusca)
-{
-    int qtdOcorrencias;
+{ 
+    int qtdOcorrencias = 0;
+    char stringbase[250];
+    char stringbusca[250];
+
+    snprintf(stringbase, sizeof(stringbase), "%d", numerobase);
+    snprintf(stringbusca, sizeof(stringbusca), "%d", numerobusca);
+
+    int lenBase = strlen(stringbase);
+    int lenBusca = strlen(stringbusca);
+
+    for (int icont = 0; icont <= lenBase - lenBusca; icont++) {
+        // Verificando se a substring a partir de 'i' corresponde a 'stringbusca'
+        int iguais = 1;
+        for (int jcont = 0; jcont < lenBusca; jcont++) {
+            if (stringbase[icont + jcont] != stringbusca[jcont]) {
+                iguais = 0;
+                break;
+            }
+        }
+
+        // Se encontrar uma correspondência, incrementa a contagem
+        if (iguais) {
+            qtdOcorrencias++;
+            icont += lenBusca - 1;  // Avançar o índice para depois da correspondência
+        }
+    }
+
     return qtdOcorrencias;
 }
 
