@@ -383,27 +383,33 @@ Rertono (int)
 int modificarTamanhoEstruturaAuxiliar(int posicao, int novoTamanho)
 {
 
-    int retorno = 0;
+     int retorno = 0;
 
-    // a posicao pode já existir estrutura auxiliar
-    if (vetorPrincipal[posicao].temAux == 0)
-        retorno = SEM_ESTRUTURA_AUXILIAR;
-
-    // se posição nao é um valor válido {entre 1 e 10}
-    else if  (posicao < 1 || posicao > 10)
+    if (posicao < 1 || posicao > 10)
         retorno = POSICAO_INVALIDA;
-
-    // o tamanho nao pode ser menor que 1
-    else if (vetorPrincipal[posicao].tamanho + novoTamanho < 0)
-        retorno = TAMANHO_INVALIDO;
-
-    // o tamanho ser muito grande
-    else if ((int *) malloc(sizeof(int) * (vetorPrincipal[posicao].tamanho + novoTamanho)) == NULL)
-        retorno = SEM_ESPACO_DE_MEMORIA;
+    else if (!vetorPrincipal[posicao].temAux)
+        retorno = SEM_ESTRUTURA_AUXILIAR;
     else
-     vetorPrincipal[posicao].aux = 
-     (int *) realloc(vetorPrincipal[posicao].aux, sizeof(int) * (vetorPrincipal[posicao].tamanho + novoTamanho));
+    {
+        int tamanhoResultante = vetorPrincipal[posicao].tamanho + novoTamanho;
 
+        if (tamanhoResultante < 1)
+            retorno = NOVO_TAMANHO_INVALIDO;
+        else
+        {
+            int *novoVetor = realloc(vetorPrincipal[posicao].aux, tamanhoResultante * sizeof(int));
+            if (novoVetor == NULL)
+                retorno = SEM_ESPACO_DE_MEMORIA;
+            else
+            {
+                vetorPrincipal[posicao].aux = novoVetor;
+                vetorPrincipal[posicao].tamanho = tamanhoResultante;
+                if (novoTamanho < 0)
+                    vetorPrincipal[posicao].posicaoAux += novoTamanho;
+                retorno = SUCESSO;
+            }
+        }
+    }
     return retorno;
 }
 
@@ -418,22 +424,15 @@ Retorno (int)
 */
 int getQuantidadeElementosEstruturaAuxiliar(int posicao)
 {
+    int counter = 0;
     int retorno = 0;
-    int icont = 0;
 
-    if (vetorPrincipal[posicao].temAux == 0)
+    if (posicao < 1 || posicao > 10)
+        retorno = POSICAO_INVALIDA;
+    else if (!vetorPrincipal[posicao].temAux)
         retorno = SEM_ESTRUTURA_AUXILIAR;
-
-    else if  (vetorPrincipal[posicao].posicaoAux < 1)
-        retorno = ESTRUTURA_AUXILIAR_VAZIA;
-    
     else
-        while (icont < vetorPrincipal[posicao].tamanho){
-            if (vetorPrincipal[posicao].aux[icont] != 0)
-                icont++;
-            retorno = icont;
-        }
-
+        retorno = vetorPrincipal[posicao].posicaoAux;
     return retorno;
 }
 
