@@ -24,10 +24,10 @@ int main()
     testeInserirComEstrutura();//v
     testeExcluir();// v
     testeExcluirNumeroEspecifico(); //v
-    //testeListar();// errei 1
-    //testeRetornarTodosNumeros();// v
+    testeListar();// errei 1
+    testeRetornarTodosNumeros();// v
     testeMudarTamanhoEstrutura();
-    //testeListaEncadeada();
+    testeListaEncadeada();
     finalizar();
 }
 int ligado = 0;
